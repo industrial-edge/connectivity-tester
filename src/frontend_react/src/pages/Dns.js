@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, inputTerminal } from "./Terminal";
+import { Dialog, inputDialog } from "../layout/Dialog";
 import { Box } from "@mui/material";
 
 export default function Dns() {
@@ -92,8 +92,8 @@ export default function Dns() {
 
     return (
         <Box style={{maxWidth: windowSize[0]-20}} display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'}>
-            <Terminal text={inputTerminal("150px", "name to ip", hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick)}/>
-            <Terminal text={inputTerminal("150px", "ip to name", hostnameReverse, loadingReverse, responseReverse, responseStatusReverse, handleChangeReverse, handleKeyDownReverse, handleClickReverse)}/>
+            <Dialog text={inputDialog("150px", "name to ip", hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick)}/>
+            <Dialog text={inputDialog("150px", "ip to name", hostnameReverse, loadingReverse, responseReverse, responseStatusReverse, handleChangeReverse, handleKeyDownReverse, handleClickReverse)}/>
         </Box>
     )
 }

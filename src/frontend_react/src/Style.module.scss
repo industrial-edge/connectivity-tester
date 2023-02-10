@@ -1,60 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
 
-$purple: #cb09dd;
-$pink: #ef8df8;
+$lightgreen: #00d7a0;
+$mediumgreen: #00af8e;
+$azure: #00e6dc;
+$lightblue: #00bedc;
+$midnight: #000028;
+$darkblue: #00405d;
+$mediumblue: #00646e;
+$red: #bb0000;
+$purple: #aa32be;
 $white: #f8f8f8;
-$dark: #1f1f1f;
-$red: #FF6057;
-$yellow: #FFBD2E;
-$green: #27C93F;
-$lightgray: #c9c9c9;
-$blue: #2c87ff;
+$yellow: #ffde66;
 
-.shadowed {
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,0.4);
-}
-
-.purple {
-  color: $purple;
-}
-
-.pink {
-  color: $pink;
-}
-
-.white {
-  color: $white;
+:export {
+  lightgreen: $lightgreen;
+  mediumgreen: $mediumgreen;
+  azure: $azure;
+  lightblue: $lightblue;
+  midnight: $midnight;
+  darkblue: $darkblue;
+  mediumblue: $mediumblue;
+  red: $red;
+  purple: $purple;
+  white: $white;
+  yellow: $yellow;
 }
 
 .dark {
-  color: $dark;
-}
-
-.red {
-  color: $red;
-}
-
-.yellow {
-  color: $yellow;
-}
-
-.green {
-  color: $green;
-}
-
-.lightgray {
-  color: $lightgray;
-}
-
-.blue {
-  color: $blue;
-}
-
-.dark {
-  background-color: $dark;
+  background-color: $midnight;
   color: $white;
 
-  a, i, li {
+  a {
     color: $white;
   }
 
@@ -62,41 +38,22 @@ $blue: #2c87ff;
     color: $white;
   }
 
-  footer {
-    color: $white;
+  a:link {
+    text-decoration: none;
   }
 }
 
 .active {
-  border-bottom: 5px solid;
-  border-image-slice: 1;
-}
-
-h1 {
-  font-size: 2rem;
-  text-align: center;
-  @media only screen and (min-width: 940px) {
-    font-size: 3rem;
-    text-align: left;
-  }
-}
-
-h2 {
-  font-size: 1.25rem;
-  text-align: center;
-  @media only screen and (min-width: 940px) {
-    font-size: 2rem;
-    text-align: left;
+  a:visited {
+    color: $lightgreen;
   }
 }
 
 body {
   font-family: 'Roboto', Helvetica, sans-serif;
-  font-size: 1.5vh;
+  font-size: 2vh;
   width: 100%;
   height: 100%;
-  color: $dark;
-  background-color: $white;
   box-sizing: border-box;
 }
 
@@ -104,20 +61,4 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-a,
-a:link,
-a:hover,
-a:visited,
-a:active {
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-}
-
-ul {
-  list-style-type: none;
 }

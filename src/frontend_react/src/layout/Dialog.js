@@ -3,7 +3,6 @@ import Style from '../Style.module.scss';
 import {Box, Grid, Button, CircularProgress, MenuItem, Checkbox, FormGroup, FormControlLabel} from "@mui/material";
 
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import CircleIcon from '@mui/icons-material/Circle';
 import ListIcon from '@mui/icons-material/List';
 import FolderIcon from '@mui/icons-material/Folder';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
@@ -16,58 +15,66 @@ import { styled } from '@mui/material/styles';
 import TreeView from '@mui/lab/TreeView';
 import TreeItem from '@mui/lab/TreeItem';
 
-import classNames from "classnames";
+import { createTheme, ThemeProvider  } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: Style.lightgreen,
+    },
+    secondary: {
+      main: Style.darkblue,
+    },
+    error: {
+      main: Style.red,
+    },
+  },
+});
 
 
 const TerminalTextField = styled(TextField)({
-  'backgroundColor': '#27242f',
+  'backgroundColor': Style.midnight,
   '.MuiInputBase-root' : {
-    color: 'white',
+    color: Style.white,
     fontFamily: [
       'Courier New, Courier, monospace'
     ].join(','),
     fontSize: '1.2rem'
   },
   'input': {
-    color: 'white',
+    color: Style.white,
     fontFamily: [
       'Courier New, Courier, monospace'
     ].join(','),
     fontSize: '1.2rem'
   },
   '& label.Mui-focused': {
-    color: 'white'
+    color: Style.white
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: 'white',
+    borderBottomColor: Style.white,
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
       borderColor: 'grey'
     },
     '&:hover fieldset': {
-      borderColor: 'white',
+      borderColor: Style.white,
     },
       '&.Mui-focused fieldset': {
-    borderColor: 'white',
+    borderColor: Style.white,
     },
     '& .MuiSelect-icon':{
-      color: 'white'
+      color: Style.white
     }
   }
 });
 
-function Terminal(props) {
+function Dialog(props) {
   const {text} = props;
-
   return (
-    <Box component={'section'} width={{xs: '75%', md: '75%'}} borderRadius={'0.5rem'} mb={'4rem'}>
-      <Box sx={{backgroundColor: '#8c8c8c'}} p={'0.5rem'} borderRadius={'0.5rem 0.5rem 0 0'} fontSize={'1rem'}>
-        <CircleIcon fontSize="small" className={classNames(Style.red)} />
-        <CircleIcon fontSize="small" className={classNames(Style.yellow)} />
-        <CircleIcon fontSize="small" className={classNames(Style.green)} />
-      </Box>
-      <Box style={{overflowWrap: 'break-word'}} py={{xs: '1rem', md: '2rem'}} px={{xs: '2rem', md: '3rem'}} borderRadius={'0 0 0.5rem 0.5rem'} sx={{backgroundColor: '#27242f'}} fontSize={'1.2rem'} fontFamily={'Courier New, Courier, monospace'}>
+    <Box width={{xs: '75%', md: '75%'}} >
+      <Box style={{overflowWrap: 'break-word'}} py={{xs: '1rem', md: '2rem'}} px={{xs: '2rem', md: '3rem'}} fontSize={'1.2rem'} fontFamily={'Courier New, Courier, monospace'}>
         {text}
       </Box>
     </Box>
@@ -83,9 +90,9 @@ function richObjectTreeView(data, handleSelect, loading) {
  
   return (
     <TreeView
-    defaultCollapseIcon={<FolderOpenIcon className={classNames(Style.yellow)} />}
-    defaultExpandIcon={<FolderIcon className={classNames(Style.yellow)} />}
-    defaultEndIcon={<ArticleIcon className={classNames(Style.blue)} />}
+    defaultCollapseIcon={<FolderOpenIcon style={{color:Style.yellow}} />}
+    defaultExpandIcon={<FolderIcon style={{color:Style.yellow}} />}
+    defaultEndIcon={<ArticleIcon style={{color:Style.lightgreen}} />}
     onNodeSelect={handleSelect}
     disableSelection = {loading ? true : false}
     sx={{ flexGrow: 1, overflowY: 'auto' }}
@@ -95,26 +102,28 @@ function richObjectTreeView(data, handleSelect, loading) {
   );
  }
 
-function inputTerminal(promptWidth, promptText, hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick) {
+function inputDialog(promptWidth, promptText, hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick) {
   return <>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
       <Grid item width={promptWidth}>
-        <span className={classNames(Style.purple)}>$</span> {promptText}
+        <span style={{color:Style.purple}}>$</span> {promptText}
       </Grid>
       <Grid marginLeft='auto' item xs>
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
       </Grid>
       <Grid item width="100px">
+      <ThemeProvider theme={theme}>
         <Button variant="contained" sx={{ width: 100, height: 44}} color="primary" onClick={handleClick} endIcon={loading ? "" : <KeyboardReturnIcon />}>
           {loading === true && <CircularProgress color="inherit" size={28}/>}
           {!loading && "Send"}
         </Button>
+      </ThemeProvider>
       </Grid>
     </Grid>
     {responseStatus > 0 &&
       <p>
       <br></br>
-      <span className={classNames(Style.purple)}>></span> {response}
+      <span style={{color:Style.purple}}>></span> {response}
       </p>
     }
   </>;
@@ -127,11 +136,13 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
       </Grid>
       <Grid item width="150px">
+      <ThemeProvider theme={theme}>
         <Button variant="contained" sx={{ width: 150, height: 44}} color={responseStatus !== 1 ? "primary" : "error"} onClick={handleClick} endIcon={loading ? "" : <ListIcon />}>
           {loading === true && <CircularProgress color="inherit" size={28}/>}
           {!loading && responseStatus === 1  && "Disconnect"}
           {!loading && responseStatus !== 1 && "Connect"}
         </Button>
+      </ThemeProvider>
       </Grid>
     </Grid>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
@@ -150,7 +161,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
           <div>
           <br></br>
           <p>
-          <span className={classNames(Style.purple)}>></span> found {response[0]} nodes
+          <span style={{color:Style.purple}}>></span> found {response[0]} nodes
           </p>
           <br></br>
           </div>
@@ -161,7 +172,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
         {responseStatus > 1 &&
           <p>
           <br></br>
-          <span className={classNames(Style.purple)}>></span> {response}
+          <span style={{color:Style.purple}}>></span> {response}
           </p>
         }
       </Grid>
@@ -210,10 +221,12 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
       </Grid>
       <Grid item width="100px">
+      <ThemeProvider theme={theme}>
         <Button variant="contained" sx={{ width: 100, height: 44}} color="primary" onClick={handleClick} endIcon={loading ? "" : <KeyboardReturnIcon />}>
           {loading === true && <CircularProgress color="inherit" size={28}/>}
           {!loading && "Send"}
         </Button>
+      </ThemeProvider>
       </Grid>
     </Grid>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
@@ -231,6 +244,7 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
         </Grid>
       </Grid>
     }
+    <ThemeProvider theme={theme}>
     <FormGroup>
       <FormControlLabel control={
       <Checkbox
@@ -243,17 +257,20 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
       />
       } label="Verify SSL Certificate" />
     </FormGroup>
+    </ThemeProvider>
     {responseStatus > 0 &&
       <p>
+      <ThemeProvider theme={theme}>
       <Button variant="contained" sx={{ width: 200, height: 44}} color="primary" onClick={() => {navigator.clipboard.writeText(response);}} endIcon={<ContentCopyIcon />}>
         Copy To Clipboard
       </Button>
+      </ThemeProvider>
       <br></br>
       <br></br>
-      <span className={classNames(Style.purple)}>></span> {response}
+      <span style={{color:Style.purple}}>></span> {response}
       </p>
     }
   </>;
 }
 
-export { Terminal, inputTerminal, inputOpcua, inputHttpRequest };
+export { Dialog, inputDialog, inputOpcua, inputHttpRequest };

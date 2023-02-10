@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, inputHttpRequest } from "./Terminal";
+import { Dialog, inputHttpRequest } from "../layout/Dialog";
 import { Box } from "@mui/material";
 
 export default function Http() {
@@ -91,7 +91,7 @@ export default function Http() {
 
     return (
         <Box style={{maxWidth: windowSize[0]-20}} display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'}>
-            <Terminal text={inputHttpRequest(hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick, headers, handleChangeHeaders, body, handleChangeBody, verify, handleChangeVerify, request, handleChangeRequest)}/>
+            <Dialog text={inputHttpRequest(hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick, headers, handleChangeHeaders, body, handleChangeBody, verify, handleChangeVerify, request, handleChangeRequest)}/>
         </Box>
     )
 }

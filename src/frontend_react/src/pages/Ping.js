@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, inputTerminal } from "./Terminal";
+import { Dialog, inputDialog } from "../layout/Dialog";
 import { Box } from "@mui/material";
 
 export default function Ping() {
@@ -57,7 +57,7 @@ export default function Ping() {
 
     return (
         <Box style={{maxWidth: windowSize[0]-20}} display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'}>
-            <Terminal text={inputTerminal("80px", "ping", hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick)}/>
+            <Dialog text={inputDialog("80px", "ping", hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick)}/>
         </Box>
     )
 }

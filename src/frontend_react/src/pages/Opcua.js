@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, inputOpcua } from "./Terminal";
+import { Dialog, inputOpcua } from "../layout/Dialog";
 import { Box } from "@mui/material";
 
 export default function Opcua() {
@@ -110,7 +110,7 @@ export default function Opcua() {
 
     return (
         <Box style={{maxWidth: windowSize[0]-20}} display={'flex'} flexDirection={'column'} alignItems={'center'} mt={'3rem'}>
-            <Terminal text={inputOpcua(hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick, handleSelect, somethingSelected, nodeInfo, nodeInfoStatus, user, handleChangeUser, pwd, handleChangePwd)}/>
+            <Dialog text={inputOpcua(hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick, handleSelect, somethingSelected, nodeInfo, nodeInfoStatus, user, handleChangeUser, pwd, handleChangePwd)}/>
         </Box>
     )
 }
