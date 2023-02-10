@@ -2,13 +2,13 @@ import React, {useState} from 'react';
 import Style from '../Style.module.scss';
 import {Link, useLocation} from "react-router-dom";
 import {Box} from "@mui/material";
-import {info} from "../info/Info";
+import {info} from "./Info";
 
 const links = [
     {
-        name: 'Home',
+        name: 'Info',
         to: '/',
-        active: 'home'
+        active: 'info'
     },
     {
         name: 'Ping',
@@ -39,10 +39,10 @@ const links = [
 
 export default function Navbar() {
     const location = useLocation()
-    const [active, setActive] = useState(location.pathname === '/' ? 'home' : location.pathname.slice(1, location.pathname.length));
+    const [active, setActive] = useState(location.pathname === '/' ? 'info' : location.pathname.slice(1, location.pathname.length));
 
     return (
-        <Box component={'nav'} width={'100%'}>
+        <Box width={'100%'}>
             <Box component={'ul'} display={'flex'} justifyContent={'center'} alignItems={'center'}
                  gap={{xs: '2rem', md: '8rem'}}
                  fontSize={'1rem'}

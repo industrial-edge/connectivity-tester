@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, inputHttpRequest } from "../Terminal";
+import { Terminal, inputHttpRequest } from "./Terminal";
 import { Box } from "@mui/material";
 
 export default function Http() {
@@ -10,7 +10,7 @@ export default function Http() {
     const [loading, setLoading] = useState(0);
     const [headers, setHeaders] = useState("");
     const [body, setBody] = useState("");
-    const [verify, setVerify] = useState(true);
+    const [verify, setVerify] = useState(false);
     const [request, setRequest] = useState("GET");
 
     const [windowSize, setWindowSize] = useState([

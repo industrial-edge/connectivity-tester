@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, inputOpcua } from "../Terminal";
+import { Terminal, inputOpcua } from "./Terminal";
 import { Box } from "@mui/material";
 
 export default function Opcua() {

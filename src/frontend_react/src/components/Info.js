@@ -1,8 +1,43 @@
 import React from 'react';
-import Style from '../../Style.module.scss';
+import Style from '../Style.module.scss';
 import classNames from 'classnames';
 import {Box} from "@mui/material";
-import {info} from "../../info/Info";
+import icon from "../img/conntest_white.png"
+
+const colors = ["rgb(0, 153, 200)", "rgb(77, 188, 188)"]
+
+export const info = {
+   appName: "Connectivity Tester",
+   icon: icon, 
+   gradient: `-webkit-linear-gradient(135deg, ${colors})`,
+   baseColor: colors[1],
+   tools: [
+      {
+         emoji: '🌎',
+         text: 'Internet Connectivity'
+      },
+      {
+         emoji: "🦾",
+         text: "Shopfloor Connectivity"
+      },
+      {
+         emoji: "📃",
+         text: "DNS Name Resolution"
+      },
+      {
+         emoji: '⏰',
+         text: 'NTP Server Connectivity'
+      },
+      {
+         emoji: '🖥️',
+         text: 'OPC UA Server Browsing'
+      },
+      {
+         emoji: '💬',
+         text: 'HTTP Requests'
+      }
+   ]
+}
 
 function EmojiBullet(props) {
    const {emoji, text} = props;
@@ -16,11 +51,11 @@ function EmojiBullet(props) {
    );
 }
 
-export default function Home() {
+export default function Info() {
    return (
       <Box component={'main'} display={'flex'} flexDirection={{xs: 'column', md: 'row'}} alignItems={'center'}
            justifyContent={'center'} minHeight={'calc(80vh - 175px)'}>
-         <Box className={classNames(Style.avatar, Style.shadowed)} alt={'Connectivity Tester'} style={{background: info.gradient}} component={'img'} src={info.icon} width={{xs: '35vh', md: '40vh'}}
+         <Box className={classNames(Style.shadowed)} alt={'Connectivity Tester'} style={{background: info.gradient}} component={'img'} src={info.icon} width={{xs: '35vh', md: '40vh'}}
               height={{xs: '35vh', md: '40vh'}}
               borderRadius={'50%'} p={'0.75rem'} mb={{xs: '1rem', sm: 0}} mr={{xs: 0, md: '2rem'}}/>
          <Box>

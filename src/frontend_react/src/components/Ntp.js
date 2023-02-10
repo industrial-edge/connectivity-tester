@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, inputTerminal } from "../Terminal";
+import { Terminal, inputTerminal } from "./Terminal";
 import { Box } from "@mui/material";
 
 export default function Ntp() {
