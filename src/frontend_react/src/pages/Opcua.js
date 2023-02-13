@@ -4,15 +4,15 @@ import { Box } from "@mui/material";
 
 export default function Opcua() {
 
-    const [hostname, setHostname] = useState("");
+    const [hostname, setHostname] = useState('');
     const [response, setResponse] = useState(0);
     const [responseStatus, setResponseStatus] = useState(0);
     const [loading, setLoading] = useState(false);
     const [somethingSelected, setSomethingSelected] = useState(false);
     const [nodeInfo, setNodeInfo] = useState(0);
     const [nodeInfoStatus, setNodeInfoStatus] = useState(0);
-    const [user, setUser] = useState("");
-    const [pwd, setPwd] = useState("");
+    const [user, setUser] = useState('');
+    const [pwd, setPwd] = useState('');
     
     const [windowSize, setWindowSize] = useState([
         window.innerWidth,

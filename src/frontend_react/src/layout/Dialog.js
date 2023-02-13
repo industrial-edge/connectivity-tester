@@ -20,10 +20,10 @@ import { createTheme, ThemeProvider  } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: Style.lightgreen,
+      main: Style.boldgreen,
     },
     secondary: {
-      main: Style.darkblue,
+      main: Style.softblue,
     },
     error: {
       main: Style.red,
@@ -33,7 +33,7 @@ const theme = createTheme({
 
 
 const TerminalTextField = styled(TextField)({
-  'backgroundColor': Style.midnight,
+  'backgroundColor': Style.deepblue,
   '.MuiInputBase-root' : {
     color: Style.white,
     fontFamily: [
@@ -70,6 +70,21 @@ const TerminalTextField = styled(TextField)({
   }
 });
 
+const MyTreeItem = styled(TreeItem)({
+  "&.MuiTreeItem-root > .MuiTreeItem-content:hover": {
+    background: Style.darkgreen,
+  },
+  "&.MuiTreeItem-root > .MuiTreeItem-content.Mui-selected": {
+    background: Style.siemenspetrol,
+  },
+  "&.MuiTreeItem-root > .MuiTreeItem-content.Mui-selected.Mui-focused": {
+    background: Style.siemenspetrol,
+  },
+  "&.MuiTreeItem-root > .MuiTreeItem-content.Mui-focused": {
+    background: Style.darkgreen,
+  },
+});
+
 function Dialog(props) {
   const {text} = props;
   return (
@@ -83,16 +98,16 @@ function Dialog(props) {
 
 function richObjectTreeView(data, handleSelect, loading) {
   const renderTree = (nodes) => (
-    <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+    <MyTreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
       {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
-    </TreeItem>
+    </MyTreeItem>
   );
  
   return (
     <TreeView
-    defaultCollapseIcon={<FolderOpenIcon style={{color:Style.yellow}} />}
-    defaultExpandIcon={<FolderIcon style={{color:Style.yellow}} />}
-    defaultEndIcon={<ArticleIcon style={{color:Style.lightgreen}} />}
+    defaultCollapseIcon={<FolderOpenIcon style={{color:Style.softyellow}} />}
+    defaultExpandIcon={<FolderIcon style={{color:Style.softyellow}} />}
+    defaultEndIcon={<ArticleIcon style={{color:Style.boldgreen}} />}
     onNodeSelect={handleSelect}
     disableSelection = {loading ? true : false}
     sx={{ flexGrow: 1, overflowY: 'auto' }}
@@ -106,7 +121,7 @@ function inputDialog(promptWidth, promptText, hostname, loading, response, respo
   return <>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
       <Grid item width={promptWidth}>
-        <span style={{color:Style.purple}}>$</span> {promptText}
+        <span style={{color:Style.softpurple}}>$</span> {promptText}
       </Grid>
       <Grid marginLeft='auto' item xs>
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
@@ -123,7 +138,7 @@ function inputDialog(promptWidth, promptText, hostname, loading, response, respo
     {responseStatus > 0 &&
       <p>
       <br></br>
-      <span style={{color:Style.purple}}>></span> {response}
+      <span style={{color:Style.softpurple}}>></span> {response}
       </p>
     }
   </>;
@@ -161,7 +176,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
           <div>
           <br></br>
           <p>
-          <span style={{color:Style.purple}}>></span> found {response[0]} nodes
+          <span style={{color:Style.softpurple}}>></span> found {response[0]} nodes
           </p>
           <br></br>
           </div>
@@ -172,7 +187,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
         {responseStatus > 1 &&
           <p>
           <br></br>
-          <span style={{color:Style.purple}}>></span> {response}
+          <span style={{color:Style.softpurple}}>></span> {response}
           </p>
         }
       </Grid>
@@ -251,7 +266,7 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
         checked={verify}
         onChange={handleChangeVerify}
         sx={{
-          color: '#8c8c8c',
+          color: '#00ffb9',
           '& .MuiSvgIcon-root': { fontSize: 32 } 
         }}
       />
@@ -267,7 +282,7 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
       </ThemeProvider>
       <br></br>
       <br></br>
-      <span style={{color:Style.purple}}>></span> {response}
+      <span style={{color:Style.softpurple}}>></span> {response}
       </p>
     }
   </>;

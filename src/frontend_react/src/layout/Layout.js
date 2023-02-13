@@ -8,6 +8,7 @@ import Opcua from "../pages/Opcua";
 import Http from "../pages/Http";
 import {Route, Routes} from "react-router-dom";
 import {Box, Grid} from "@mui/material";
+import icon from "../img/conntest_edge.png"
 
 export default function Layout() {
 
@@ -28,8 +29,9 @@ export default function Layout() {
                </Routes>
             </Grid>
             <Grid item>
-               <Box fontSize={'0.8rem'} display={'flex'} flexDirection={'column'} alignItems={'center'} py={'1.5rem'} sx={{opacity: 0.7}} width={'100%'}>
-                  <p>Connectivity Tester v0.2.2</p>
+               <Box fontSize={'0.8rem'} display={'flex'} justifyContent={'center'} alignItems={'center'} py={'1.5rem'} sx={{opacity: 0.7}} width={'100%'}>
+                  <img src={icon} alt="Connectivity Tester" width={60} height={60}/>
+                  Connectivity Tester v0.2.4
                </Box>
             </Grid>
          </Grid>

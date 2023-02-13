@@ -18,7 +18,7 @@ from asyncua import Client
 import logging
 
 logger = logging.getLogger("asyncua")
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 

@@ -1,33 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
 
-$lightgreen: #00d7a0;
-$mediumgreen: #00af8e;
-$azure: #00e6dc;
-$lightblue: #00bedc;
-$midnight: #000028;
-$darkblue: #00405d;
-$mediumblue: #00646e;
-$red: #bb0000;
-$purple: #aa32be;
-$white: #f8f8f8;
-$yellow: #ffde66;
+$siemenspetrol: #009999;
+$lightpetrol: #00c1b6;
+$boldgreen: #00ffb9;
+$softgreen: #00d7a0;
+$boldblue: #00e6dc;
+$softblue: #00bedc;
+$deepblue: #000028;
+$softyellow: #ffe270;
+$darkgreen: #00646e;
+$green: #00af8e;
+$darkblue: #00557c;
+$blue: #0087be;
+$red: #ef0137;
+$softpurple: #b4a8ff;
+$purple: #805cff;
+$white: #ffffff;
 
 :export {
-  lightgreen: $lightgreen;
-  mediumgreen: $mediumgreen;
-  azure: $azure;
-  lightblue: $lightblue;
-  midnight: $midnight;
+  siemenspetrol: $siemenspetrol;
+  lightpetrol: $lightpetrol;
+  boldgreen: $boldgreen;
+  softgreen: $softgreen;
+  boldblue: $boldblue;
+  softblue: $softblue;
+  deepblue: $deepblue;
+  darkgreen: $darkgreen;
+  green: $green;
   darkblue: $darkblue;
-  mediumblue: $mediumblue;
+  blue: $blue;
+  softyellow: $softyellow;
   red: $red;
+  softpurple: $softpurple;
   purple: $purple;
   white: $white;
-  yellow: $yellow;
 }
 
 .dark {
-  background-color: $midnight;
+  background-color: $deepblue;
   color: $white;
 
   a {
@@ -45,7 +55,7 @@ $yellow: #ffde66;
 
 .active {
   a:visited {
-    color: $lightgreen;
+    color: $boldgreen;
   }
 }
 
