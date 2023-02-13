@@ -88,7 +88,7 @@ Navigate the tree view using the mouse or keyboard. Selecting a node will show d
 
 ### HTTP Request
 
-Choose the type of HTTP request to send and fill out the headers or body if required. SSL Certification is disabled by default. Use the `Copy to Clipboard` button to copy the entire HTTP response.
+Choose the type of HTTP request to send and fill out the headers or body if required. SSL certificate verification is disabled by default. Use the `Copy to Clipboard` button to copy the entire HTTP response.
 
 The `headers` and `body` input fields should contain JSON formatted strings.
 
