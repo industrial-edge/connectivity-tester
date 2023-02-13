@@ -34,6 +34,7 @@ Please find below a short description how to publish your application in your IE
 ### Upload  App using the Industrial Edge App Publisher
 
 - Create a new application using the Industrial Edge App Publisher
+- You may use the provided [icon](/docs/graphics/conntest_edge.png)
 - Add a new app version
 - Import the [docker-compose](../docker-compose.yml) file using the **Import YAML** button
 - The warning `Build (services >> scanner-service) is not supported` can be ignored
