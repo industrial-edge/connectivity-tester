@@ -82,7 +82,7 @@ Type in the IP address or the domain name of the NTP server you want to contact.
 
 ### OPC UA
 
-Type in the OPC UA connection URL (e.g. `opc.tcp://<IP>:<Port>`). If necessary, type in the username and password for OPC UA authentication as well. Click `Connect` to browse an OPC UA server.
+Type in the OPC UA connection URL (e.g. `opc.tcp://<IP>:<Port>`). If necessary, type in the username and password for OPC UA authentication as well. Click `Connect` to browse the OPC UA server.
 
 Navigate the tree view using the mouse or keyboard. Selecting a node will show detailed information such as name, address, and value. Once browsed, the connection stays open until you click the `Disconnect` button.
 
