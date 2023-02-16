@@ -20,20 +20,20 @@ import { createTheme, ThemeProvider  } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: Style.boldgreen,
+      main: Style.primary,
     },
     secondary: {
-      main: Style.softblue,
+      main: Style.secondary,
     },
     error: {
-      main: Style.red,
+      main: Style.error,
     },
   },
 });
 
 
 const TerminalTextField = styled(TextField)({
-  'backgroundColor': Style.deepblue,
+  'backgroundColor': Style.background,
   '.MuiInputBase-root' : {
     color: Style.white,
     fontFamily: [
@@ -56,7 +56,7 @@ const TerminalTextField = styled(TextField)({
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: 'grey'
+      borderColor: Style.secondary
     },
     '&:hover fieldset': {
       borderColor: Style.white,
@@ -72,16 +72,16 @@ const TerminalTextField = styled(TextField)({
 
 const MyTreeItem = styled(TreeItem)({
   "&.MuiTreeItem-root > .MuiTreeItem-content:hover": {
-    background: Style.darkgreen,
+    background: Style.treehover,
   },
   "&.MuiTreeItem-root > .MuiTreeItem-content.Mui-selected": {
-    background: Style.siemenspetrol,
+    background: Style.treeselect,
   },
   "&.MuiTreeItem-root > .MuiTreeItem-content.Mui-selected.Mui-focused": {
-    background: Style.siemenspetrol,
+    background: Style.treeselect,
   },
   "&.MuiTreeItem-root > .MuiTreeItem-content.Mui-focused": {
-    background: Style.darkgreen,
+    background: Style.treehover,
   },
 });
 
@@ -105,9 +105,9 @@ function richObjectTreeView(data, handleSelect, loading) {
  
   return (
     <TreeView
-    defaultCollapseIcon={<FolderOpenIcon style={{color:Style.softyellow}} />}
-    defaultExpandIcon={<FolderIcon style={{color:Style.softyellow}} />}
-    defaultEndIcon={<ArticleIcon style={{color:Style.boldgreen}} />}
+    defaultCollapseIcon={<FolderOpenIcon style={{color:Style.treefolder}} />}
+    defaultExpandIcon={<FolderIcon style={{color:Style.treefolder}} />}
+    defaultEndIcon={<ArticleIcon style={{color:Style.treevariable}} />}
     onNodeSelect={handleSelect}
     disableSelection = {loading ? true : false}
     sx={{ flexGrow: 1, overflowY: 'auto' }}
@@ -121,7 +121,7 @@ function inputDialog(promptWidth, promptText, hostname, loading, response, respo
   return <>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
       <Grid item width={promptWidth}>
-        <span style={{color:Style.softpurple}}>$</span> {promptText}
+        <span style={{color:Style.prompt}}>$</span> {promptText}
       </Grid>
       <Grid marginLeft='auto' item xs>
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
@@ -138,7 +138,7 @@ function inputDialog(promptWidth, promptText, hostname, loading, response, respo
     {responseStatus > 0 &&
       <p>
       <br></br>
-      <span style={{color:Style.softpurple}}>></span> {response}
+      <span style={{color:Style.prompt}}>></span> {response}
       </p>
     }
   </>;
@@ -176,7 +176,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
           <div>
           <br></br>
           <p>
-          <span style={{color:Style.softpurple}}>></span> found {response[0]} nodes
+          <span style={{color:Style.prompt}}>></span> found {response[0]} nodes
           </p>
           <br></br>
           </div>
@@ -187,7 +187,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
         {responseStatus > 1 &&
           <p>
           <br></br>
-          <span style={{color:Style.softpurple}}>></span> {response}
+          <span style={{color:Style.prompt}}>></span> {response}
           </p>
         }
       </Grid>
@@ -282,7 +282,7 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
       </ThemeProvider>
       <br></br>
       <br></br>
-      <span style={{color:Style.softpurple}}>></span> {response}
+      <span style={{color:Style.prompt}}>></span> {response}
       </p>
     }
   </>;

@@ -29,9 +29,9 @@ export default function Layout() {
                </Routes>
             </Grid>
             <Grid item>
-               <Box fontSize={'0.8rem'} display={'flex'} justifyContent={'center'} alignItems={'center'} py={'1.5rem'} sx={{opacity: 0.7}} width={'100%'}>
+               <Box fontSize={'0.8rem'} display={'flex'} justifyContent={'center'} alignItems={'center'} py={'1.5rem'} sx={{opacity: 0.8}}>
                   <img src={icon} alt="Connectivity Tester" width={60} height={60}/>
-                  Connectivity Tester v0.2.4
+                  Connectivity Tester v0.2.5
                </Box>
             </Grid>
          </Grid>

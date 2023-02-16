@@ -15,25 +15,21 @@ $blue: #0087be;
 $red: #ef0137;
 $softpurple: #b4a8ff;
 $purple: #805cff;
+$darkgray : #66667e;
+$softgray: #ccccd4;
 $white: #ffffff;
 
 :export {
-  siemenspetrol: $siemenspetrol;
-  lightpetrol: $lightpetrol;
-  boldgreen: $boldgreen;
-  softgreen: $softgreen;
-  boldblue: $boldblue;
-  softblue: $softblue;
-  deepblue: $deepblue;
-  darkgreen: $darkgreen;
-  green: $green;
-  darkblue: $darkblue;
-  blue: $blue;
-  softyellow: $softyellow;
-  red: $red;
-  softpurple: $softpurple;
-  purple: $purple;
   white: $white;
+  primary: $boldgreen;
+  secondary: $darkgray;
+  error: $red;
+  background: $deepblue;
+  treeselect: $siemenspetrol;
+  treehover: $darkgreen;
+  treefolder: $softyellow;
+  treevariable: $boldgreen;
+  prompt: $softpurple;
 }
 
 .dark {
