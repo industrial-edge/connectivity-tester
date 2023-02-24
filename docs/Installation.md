@@ -1,28 +1,28 @@
 # Installation
 
 - [Installation](#installation)
-  - [Build application](#build-application)
-    - [Cloning image](#cloning-image)
-    - [Build docker image](#build-docker-image)
-  - [Upload  App to the Industrial Edge Management](#upload--app-to-the-industrial-edge-management)
+  - [Build the application](#build-the-application)
+    - [Clone the image](#clone-the-image)
+    - [Build the docker image](#build-the-docker-image)
+  - [Upload the app to the Industrial Edge Management](#upload-the-app-to-the-industrial-edge-management)
     - [Connect your Industrial Edge App Publisher](#connect-your-industrial-edge-app-publisher)
-    - [Upload  App using the Industrial Edge App Publisher](#upload--app-using-the-industrial-edge-app-publisher)
+    - [Upload the app using the Industrial Edge App Publisher](#upload-the-app-using-the-industrial-edge-app-publisher)
   
-## Build application
+## Build the application
 
-### Cloning image
+### Clone the image
 
 - Clone or Download the source code to your engineering environment
 
-### Build docker image
+### Build the docker image
 
 - Find the two files (in `src/backend_flask` and `src/frontend_react` respectively) named `Dockerfile.example`. These are example Dockerfiles that can be used to build the Docker images of the backend and the frontend. If you choose to use these, rename them both to `Dockerfile` before proceeding
 - Open a console in the root folder (where the `docker-compose` file is)
-- Use the `docker-compose build` command to create the docker images
-- These docker images can now be used to build you app with the Industrial Edge App Publisher
+- Use the `docker compose build` (replaces the older `docker-compose build` command) command to create the docker images
+- These docker images can now be used to build your app with the Industrial Edge App Publisher
 - `docker images | grep conntest` can be used to check for the images
 
-## Upload  App to the Industrial Edge Management
+## Upload the app to the Industrial Edge Management
 
 Please find below a short description how to publish your application in your IEM. For more detailed information, please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
 
@@ -31,7 +31,7 @@ Please find below a short description how to publish your application in your IE
 - Connect your Industrial Edge App Publisher to your docker engine
 - Connect your Industrial Edge App Publisher to your Industrial Edge Management System
 
-### Upload  App using the Industrial Edge App Publisher
+### Upload the app using the Industrial Edge App Publisher
 
 - Create a new application using the Industrial Edge App Publisher
 - You may use the provided [icon](/docs/graphics/conntest_edge.png)
