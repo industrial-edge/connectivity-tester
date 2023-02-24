@@ -37,7 +37,7 @@ Please find below a short description how to publish your application in your IE
 - You may use the provided [icon](/docs/graphics/conntest_edge.png)
 - Add a new app version
 - Import the [docker-compose](../docker-compose.yml) file using the `Import YAML` button
-- The warning `Build (services >> scanner-service) is not supported` can be ignored
+- The warning `Build (services >> ...) is not supported` can be ignored
 - Next to the `conntest_frontend` service, go to `Edit`:
 
 ![02](/docs/graphics/conntest_02.png)
