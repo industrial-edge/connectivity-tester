@@ -50,6 +50,6 @@ Please find below a short description how to publish your application in your IE
 - Proceed with the app version creation and make sure that the following settings are set up correctly:
 
 ![05](/docs/graphics/conntest_05.png)
-- `Start Upload` to transfer the app to Industrial Edge Management
+- `Start Upload` to transfer the app to the Industrial Edge Management
 - Further information about using the Industrial Edge App Publisher can be found in the [IE Documentation](https://docs.eu1.edge.siemens.cloud/operator/index.html)
 - Install the app on an Edge Device and follow the [usage instructions](/README.md#usage) on the main page of this guide
