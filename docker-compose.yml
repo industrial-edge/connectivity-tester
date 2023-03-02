@@ -2,13 +2,38 @@
 # This file is subject to the terms and conditions of the MIT License.  
 # See LICENSE file in the top-level directory.
 
-# Minimalistic docker-compose file to be used in development enviroment. Running docker-compose up should start the app.
 version: '2.4'
 
 services:
-  hello-world:
-    build: ./src
-    image: 'hello-world:1.0.0'
+  conntest_backend:
+    build:
+      context: ./src/backend_flask
+    image: conntest_backend:0.1
+    restart: unless-stopped
+    mem_limit: 300mb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    networks:
+      - conntest-net
+  conntest_frontend:
+    build:
+      context: ./src/frontend_react
+    image: conntest_frontend:0.1
+    restart: unless-stopped
+    mem_limit: 100mb
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "1"
+    networks:
+      - conntest-net
     ports:
-      - '8080:80'
-    restart: always
+      - "3000:80"
+
+networks:
+  conntest-net:
+    name: conntest-net

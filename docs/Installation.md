@@ -1,71 +1,55 @@
 # Installation
 
 - [Installation](#installation)
-  - [Build application](#build-application)
-    - [Cloning image](#cloning-image)
-    - [Build docker image](#build-docker-image)
-  - [Upload  App to the Industrial Edge Managment](#upload--app-to-the-industrial-edge-managment)
+  - [Build the application](#build-the-application)
+    - [Clone the image](#clone-the-image)
+    - [Build the Docker image](#build-the-docker-image)
+  - [Upload the app to the Industrial Edge Management](#upload-the-app-to-the-industrial-edge-management)
     - [Connect your Industrial Edge App Publisher](#connect-your-industrial-edge-app-publisher)
-    - [Upload  App using the Industrial Edge App Publisher](#upload--app-using-the-industrial-edge-app-publisher)
-  - [Deploying of App](#deploying-of-app)
-    - [Configuring application](#configuring-application)
-    - [Add additional installation steps here, if required](#add-additional-installation-steps-here-if-required)
-      - [Additional steps](#additional-steps)
+    - [Upload the app using the Industrial Edge App Publisher](#upload-the-app-using-the-industrial-edge-app-publisher)
   
-## Build application
+## Build the application
 
-### Cloning image
+### Clone the image
 
-- Clone or Download the source code to your engineering VM
+- Clone or Download the source code to your engineering environment
 
-### Build docker image
+### Build the Docker image
 
-Add instruction how to build your application, e.g.:
+- Find the two files (in `src/backend_flask` and `src/frontend_react` respectively) named `Dockerfile.example`. These are example Dockerfiles that can be used to build the Docker images of the backend and the frontend. If you choose to use these, rename them both to `Dockerfile` before proceeding
+- Open a console in the root folder (where the `docker-compose` file is)
+- Use the `docker compose build` (replaces the older `docker-compose build`) command to create the Docker images
+- These Docker images can now be used to build your app with the Industrial Edge App Publisher
+- `docker images | grep conntest` can be used to check for the images
 
-- Open console in the source code folder
-- Use command `docker-compose build` to create the docker image.
-- This docker image can now be used to build you app with the Industrial Edge App Publisher
-- *docker images | grep scannerapp* can be used to check for the images
-- You should get a result similiar to this:
+## Upload the app to the Industrial Edge Management
 
-## Upload  App to the Industrial Edge Managment
-
-Please find below a short description how to publish your application in your IEM.
-
-For more detailed information please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
+Please find below a short description how to publish your application in your IEM. For more detailed information, please see the section for [uploading apps to the IEM](https://github.com/industrial-edge/upload-app-to-iem).
 
 ### Connect your Industrial Edge App Publisher
 
-- Connect your Industrial Edge App Publisher to your docker engine
-- Connect your Industrial Edge App Publisher to your Industrial Edge Managment System
+- Connect your Industrial Edge App Publisher to your Docker engine
+- Connect your Industrial Edge App Publisher to your Industrial Edge Management System
 
-### Upload  App using the Industrial Edge App Publisher
+### Upload the app using the Industrial Edge App Publisher
 
-- Create a new application using the Industrial Publisher
-- Add a app new version
-- Import the [docker-compose](../docker-compose.yml) file using the **Import YAML** button
-- The warning `Build (sevices >> scanner-service) is not supported` can be ignored
-- **Start Upload** to transfer the app to Industrial Edge Managment
-- Further information about using the Industrial Edge App Publisher can be found in the [IE Hub](https://iehub.eu1.edge.siemens.cloud/documents/appPublisher/en/start.html)
+- Create a new application using the Industrial Edge App Publisher
+- You may use the provided [icon](/docs/graphics/conntest_edge.png)
+- Add a new app version
+- Import the [docker-compose](../docker-compose.yml) file using the `Import YAML` button
+- The warning `Build (services >> ...) is not supported` can be ignored
+- Next to the `conntest_frontend` service, go to `Edit`:
 
-## Deploying of App
+![02](/docs/graphics/conntest_02.png)
+- Go to `Network` and remove the predefined port mapping:
 
-### Configuring application
+![03](/docs/graphics/conntest_03.png)
+- Still under `Network`, set up the reverse proxy in the following way and add the configuration with the plus on the bottom right:
 
-If your app needs additional configuration you can add further description here, e.g. [param.json](../cfg-data/param.json)
+![04](/docs/graphics/conntest_04.png)
+- Proceed with the app version creation and make sure that the following settings are set up correctly:
 
-```json
-{
-    "Parameter1": "Siemens AG",
-    "Parameter2": "edge",
-    "Parameter3": "edge"
-}
-```
-
-Add description of the configuration here:
-
-### Add additional installation steps here, if required
-
-#### Additional steps
-
-Add description here
+![05](/docs/graphics/conntest_05.png)
+- `Start Upload` to transfer the app to the Industrial Edge Management
+- Further information about using the Industrial Edge App Publisher can be found in the [IE Documentation](https://docs.eu1.edge.siemens.cloud/operator/index.html)
+- Install the app on an Edge Device and follow the [usage instructions](/README.md#usage) on the main page of this guide

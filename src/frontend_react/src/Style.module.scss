@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
+$siemenspetrol: #009999;
+$lightpetrol: #00c1b6;
+$boldgreen: #00ffb9;
+$softgreen: #00d7a0;
+$boldblue: #00e6dc;
+$softblue: #00bedc;
+$deepblue: #000028;
+$softyellow: #ffe270;
+$darkgreen: #00646e;
+$green: #00af8e;
+$darkblue: #00557c;
+$blue: #0087be;
+$red: #ef0137;
+$softpurple: #b4a8ff;
+$purple: #805cff;
+$darkgray : #66667e;
+$softgray: #ccccd4;
+$white: #ffffff;
+
+:export {
+  white: $white;
+  primary: $boldgreen;
+  secondary: $darkgray;
+  error: $red;
+  background: $deepblue;
+  treeselect: $siemenspetrol;
+  treehover: $darkgreen;
+  treefolder: $softyellow;
+  treevariable: $boldgreen;
+  prompt: $softpurple;
+}
+
+.dark {
+  background-color: $deepblue;
+  color: $white;
+
+  a {
+    color: $white;
+  }
+
+  a:visited {
+    color: $white;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+}
+
+.active {
+  a:visited {
+    color: $boldgreen;
+  }
+}
+
+body {
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-size: 2vh;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
