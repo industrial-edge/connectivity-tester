@@ -6,7 +6,7 @@
 # It also proxies /api requests to api:5000
 
 # Build step #1: build the React front end
-FROM node:18 as build-step
+FROM node:18 AS build-step
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json package-lock.json ./
