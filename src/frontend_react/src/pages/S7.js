@@ -51,7 +51,9 @@ export default function S7() {
 
         default:
           break;
-        }      
+        } 
+        
+        setResponse("")
     };
 
     const handleKeyDown = event => {
