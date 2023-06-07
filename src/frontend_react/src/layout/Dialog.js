@@ -294,10 +294,10 @@ function inputS7Request(connectionParameters, loading, response, handleChange, h
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
       <Grid marginLeft='auto' item xs>
         <Container disableGutters sx={{m:0, pb:1}}>
-          hostname:
+          ip:
         </Container>
-        <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={event => handleChange(event, "hostname")} 
-          value={connectionParameters.hostname} onKeyDown={handleKeyDown}
+        <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={event => handleChange(event, "ip")} 
+          value={connectionParameters.ip} onKeyDown={handleKeyDown}
         />   
       </Grid>
     </Grid>

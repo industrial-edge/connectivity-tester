@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 
 export default function S7() {
 
-    const [hostname, setHostname] = useState('');
+    const [ip, setIp] = useState('');
     const [rack, setRack] = useState(0)
     const [slot, setSlot] = useState(2)
     const [port, setPort] = useState(102)
@@ -33,8 +33,8 @@ export default function S7() {
     const handleChange = (event, parameter) => {  
 
       switch (parameter) {
-        case "hostname":
-          setHostname(event.target.value);
+        case "ip":
+          setIp(event.target.value);
           break;
 
         case "port":
@@ -66,7 +66,7 @@ export default function S7() {
         if (!loading) {
             setLoading(true);
         
-            fetch(`/conntest/api/s7?hostname=${hostname}&rack=${rack}&slot=${slot}&port=${port}`).then(res => res.json()).then(data => {
+            fetch(`/conntest/api/s7?ip=${ip}&rack=${rack}&slot=${slot}&port=${port}`).then(res => res.json()).then(data => {
                 setResponse(data.response);
                 setLoading(false);
             });
@@ -80,7 +80,7 @@ export default function S7() {
     };
 
     const connectionParameters = {
-      hostname: hostname,
+      ip: ip,
       rack: rack,
       slot: slot, 
       port: port, 

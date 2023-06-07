@@ -456,7 +456,7 @@ def get_http():
 
 @app.route("/conntest/api/s7")
 def get_s7():
-    s7_hostname = request.args.get("hostname")
+    s7_ip = request.args.get("ip")
     port = int(request.args.get("port"))
     rack = int(request.args.get("rack"))
     slot = int(request.args.get("slot"))
@@ -464,7 +464,7 @@ def get_s7():
 
     client = snap7.client.Client()
     try:
-        client.connect(s7_hostname, rack, slot, port)
+        client.connect(s7_ip, rack, slot, port)
     except RuntimeError as e:
         s = e.args[0].decode("utf-8")
         response = f"Connection failed:{s}"
