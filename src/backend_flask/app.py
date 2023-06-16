@@ -8,6 +8,7 @@ import ntplib
 import dns.resolver
 import socket
 import requests
+import snap7
 
 import threading
 
@@ -16,6 +17,10 @@ import json
 import ast
 from asyncua import Client
 import logging
+
+import nmap
+
+nm = nmap.PortScanner()
 
 logger = logging.getLogger("asyncua")
 logging.basicConfig(level=logging.DEBUG)
@@ -61,7 +66,9 @@ def get_ping():
             response = f"{hostname} responded in {1000*response:.3f} ms"
             status = 1
     else:
-        response = "invalid - enter domain ('google.com') or ip address ('8.8.8.8')"
+        response = (
+            "invalid - enter domain (e.g. 'google.com') or ip address (e.g. '8.8.8.8')"
+        )
         status = 4
 
     return {"response": response, "status": status}
@@ -85,9 +92,7 @@ def get_ntp():
             response = str(ex)
             status = 3
     else:
-        response = (
-            "invalid - enter domain ('at.pool.ntp.org') or ip address ('8.8.8.8')"
-        )
+        response = "invalid - enter domain (e.g. 'at.pool.ntp.org') or ip address (e.g. '8.8.8.8')"
         status = 4
 
     return {"response": response, "status": status}
@@ -106,7 +111,7 @@ def get_dns():
             response = str(ex)
             status = 2
     else:
-        response = "invalid - enter domain ('google.at')"
+        response = "invalid - enter domain (e.g. 'google.at')"
         status = 3
 
     return {"response": response, "status": status}
@@ -124,7 +129,7 @@ def get_dns_reverse():
             response = str(ex)
             status = 2
     else:
-        response = "invalid - enter domain ('google.at')"
+        response = "invalid - enter domain (e.g. 'google.at')"
         status = 3
 
     return {"response": response, "status": status}
@@ -167,7 +172,6 @@ async def client_loop():
     global node_ids
 
     async def get_tree(browse_node):
-
         global next_index
         global node_ids
 
@@ -208,7 +212,6 @@ async def client_loop():
             return node_dict
 
     async def get_info():
-
         global node_id
         global node_info_response
         global node_info_status
@@ -216,7 +219,6 @@ async def client_loop():
         global info_flag
 
         try:
-
             current_node = client.get_node(node_id)
 
             info_name = (await current_node.read_display_name()).Text
@@ -261,7 +263,7 @@ async def client_loop():
 
         client = Client(url=opc_hostname)
 
-        if (opc_user and opc_pwd):
+        if opc_user and opc_pwd:
             client.set_user(opc_user)
             client.set_password(opc_pwd)
 
@@ -308,7 +310,6 @@ def client_loop_sync():
 
 @app.route("/conntest/api/opcua")
 async def get_opcua():
-
     global opc_hostname
     global opc_user
     global opc_pwd
@@ -329,7 +330,6 @@ async def get_opcua():
         return {"response": browse_response, "status": browse_status}
     else:
         if opc_hostname.startswith("opc.tcp://"):
-
             busy_flag = True
             disconnect_flag = True
             thread = threading.Thread(target=client_loop_sync)
@@ -340,7 +340,7 @@ async def get_opcua():
 
             return {"response": browse_response, "status": browse_status}
         else:
-            browse_response = "invalid - enter an OPC UA connection string ('opc.tcp://192.168.0.1:48010')"
+            browse_response = "invalid - enter an OPC UA connection string (e.g. 'opc.tcp://192.168.0.1:48010')"
             browse_status = 3
 
         return {"response": browse_response, "status": browse_status}
@@ -376,6 +376,7 @@ async def get_node():
     else:
         return {"response": "Not connected to server", "status": 3}
 
+
 @app.route("/conntest/api/opcua/status")
 async def get_opcua_status():
     global browse_response
@@ -387,7 +388,14 @@ async def get_opcua_status():
     if not opc_hostname:
         opc_hostname = "opc.tcp://192.168.109.1:48010"
 
-    return {"response": browse_response, "status": browse_status, "hostname": opc_hostname, "user": opc_user, "pwd": opc_pwd}
+    return {
+        "response": browse_response,
+        "status": browse_status,
+        "hostname": opc_hostname,
+        "user": opc_user,
+        "pwd": opc_pwd,
+    }
+
 
 @app.route("/conntest/api/http")
 def get_http():
@@ -397,16 +405,18 @@ def get_http():
     body = request.args.get("b")
     verify = request.args.get("v")
 
-    if (
-        validators.url(hostname)
-    ):
+    if validators.url(hostname):
         match type:
             case "get":
                 try:
                     if headers:
-                        httprequest = requests.get(hostname, verify=(verify=="true"), headers=ast.literal_eval(headers))
+                        httprequest = requests.get(
+                            hostname,
+                            verify=(verify == "true"),
+                            headers=ast.literal_eval(headers),
+                        )
                     else:
-                        httprequest = requests.get(hostname, verify=(verify=="true"))
+                        httprequest = requests.get(hostname, verify=(verify == "true"))
                     response = httprequest.text
                     status = 1
                 except Exception as ex:
@@ -415,13 +425,24 @@ def get_http():
             case "post":
                 try:
                     if headers and body:
-                        httprequest = requests.post(hostname, verify=(verify=="true"), headers=ast.literal_eval(headers), data=body)
+                        httprequest = requests.post(
+                            hostname,
+                            verify=(verify == "true"),
+                            headers=ast.literal_eval(headers),
+                            data=body,
+                        )
                     elif headers:
-                        httprequest = requests.post(hostname, verify=(verify=="true"), headers=ast.literal_eval(headers))
+                        httprequest = requests.post(
+                            hostname,
+                            verify=(verify == "true"),
+                            headers=ast.literal_eval(headers),
+                        )
                     elif body:
-                        httprequest = requests.post(hostname, verify=(verify=="true"), data=body)
+                        httprequest = requests.post(
+                            hostname, verify=(verify == "true"), data=body
+                        )
                     else:
-                        httprequest = requests.post(hostname, verify=(verify=="true"))
+                        httprequest = requests.post(hostname, verify=(verify == "true"))
                     response = httprequest.text
                     status = 1
                 except Exception as ex:
@@ -430,13 +451,24 @@ def get_http():
             case "put":
                 try:
                     if headers and body:
-                        httprequest = requests.put(hostname, verify=(verify=="true"), headers=ast.literal_eval(headers), data=body)
+                        httprequest = requests.put(
+                            hostname,
+                            verify=(verify == "true"),
+                            headers=ast.literal_eval(headers),
+                            data=body,
+                        )
                     elif headers:
-                        httprequest = requests.put(hostname, verify=(verify=="true"), headers=ast.literal_eval(headers))
+                        httprequest = requests.put(
+                            hostname,
+                            verify=(verify == "true"),
+                            headers=ast.literal_eval(headers),
+                        )
                     elif body:
-                        httprequest = requests.put(hostname, verify=(verify=="true"), data=body)
+                        httprequest = requests.put(
+                            hostname, verify=(verify == "true"), data=body
+                        )
                     else:
-                        httprequest = requests.put(hostname, verify=(verify=="true"))
+                        httprequest = requests.put(hostname, verify=(verify == "true"))
                     response = httprequest.text
                     status = 1
                 except Exception as ex:
@@ -447,8 +479,71 @@ def get_http():
                 status = 3
     else:
         response = (
-            "invalid - enter valid URL ('https://api.publicapis.org/random')"
+            "invalid - enter valid URL (e.g. 'https://api.publicapis.org/random')"
         )
         status = 4
+
+    return {"response": response, "status": status}
+
+
+@app.route("/conntest/api/s7")
+def get_s7():
+    hostname = request.args.get("h")
+    if validators.ipv4(hostname) or validators.ipv6(hostname):
+        if request.args.get("port"):
+            port = int(request.args.get("port"))
+
+            if request.args.get("rack"):
+                rack = int(request.args.get("rack"))
+
+                if request.args.get("slot"):
+                    slot = int(request.args.get("slot"))
+
+                    client = snap7.client.Client()
+                    try:
+                        client.connect(hostname, rack, slot, port)
+                        response = "Connection successful"
+                        status = 1
+                    except RuntimeError as e:
+                        response = e.args[0].decode("utf-8")
+                        status = 2
+
+                else:
+                    response = "invalid - enter valid slot (e.g. '1')"
+                    status = 3
+            else:
+                response = "invalid - enter valid rack (e.g. '0')"
+                status = 3
+        else:
+            response = "invalid - enter valid port (e.g. '102')"
+            status = 3
+    else:
+        response = "invalid - enter valid ip address (e.g. '192.168.0.1')"
+        status = 3
+
+    return {"response": response, "status": status}
+
+
+@app.route("/conntest/api/nmap")
+def get_nmap():
+    hostname = request.args.get("h").split("/")
+
+    response = "invalid - enter a valid ip address and subnet (e.g. '192.168.0.1/24')"
+    status = 3
+
+    if len(hostname) == 2:
+        ip = hostname[0]
+        subnet = hostname[1]
+
+        if subnet.isnumeric():
+            if 0 <= int(subnet) <= 32:
+                if (validators.ipv4(ip) or validators.ipv6(ip)) and subnet:
+                    try:
+                        response = nm.scan(hosts=ip + "/" + subnet, arguments="-sn")
+                        status = 1
+
+                    except Exception as ex:
+                        response = str(ex)
+                        status = 2
 
     return {"response": response, "status": status}

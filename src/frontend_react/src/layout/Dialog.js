@@ -1,6 +1,6 @@
 import React from 'react';
 import Style from '../Style.module.scss';
-import {Box, Grid, Button, CircularProgress, MenuItem, Checkbox, FormGroup, FormControlLabel} from "@mui/material";
+import {Box, Grid, Button, CircularProgress, MenuItem, Checkbox, FormGroup, FormControlLabel, Container} from "@mui/material";
 
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import ListIcon from '@mui/icons-material/List';
@@ -138,7 +138,7 @@ function inputDialog(promptWidth, promptText, hostname, loading, response, respo
     {responseStatus > 0 &&
       <p>
       <br></br>
-      <span style={{color:Style.prompt}}>></span> {response}
+      <span style={{color:Style.prompt}}></span> {response}
       </p>
     }
   </>;
@@ -148,6 +148,9 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
   return <>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
       <Grid marginLeft='auto' item xs>
+        <Container disableGutters sx={{m:0, pb:1}}>
+          OPC UA endpoint:
+        </Container>
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
       </Grid>
       <Grid item width="150px">
@@ -162,11 +165,15 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
     </Grid>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
       <Grid marginLeft='auto' item xs>
-        user:
+        <Container disableGutters sx={{m:0, pb:1}}>
+          user:
+        </Container>
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChangeUser} value={user} onKeyDown={handleKeyDown}/>
       </Grid>
       <Grid marginLeft='auto' item xs>
-        password:
+        <Container disableGutters sx={{m:0, pb:1}}>
+          password:
+        </Container>
         <TerminalTextField type="password" size="small" fullWidth margin="none" variant="outlined" onChange={handleChangePwd} value={pwd} onKeyDown={handleKeyDown}/>
       </Grid>
     </Grid>
@@ -176,7 +183,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
           <div>
           <br></br>
           <p>
-          <span style={{color:Style.prompt}}>></span> found {response[0]} nodes
+          <span style={{color:Style.prompt}}></span> found {response[0]} nodes
           </p>
           <br></br>
           </div>
@@ -187,7 +194,7 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
         {responseStatus > 1 &&
           <p>
           <br></br>
-          <span style={{color:Style.prompt}}>></span> {response}
+          <span style={{color:Style.prompt}}></span> {response}
           </p>
         }
       </Grid>
@@ -246,7 +253,9 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
     </Grid>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
       <Grid marginLeft='auto' item xs>
-        headers:
+        <Container disableGutters sx={{m:0, pb:1}}>
+          headers:
+        </Container>
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" multiline onChange={handleChangeHeaders} value={headers}/>
       </Grid>
     </Grid>
@@ -254,7 +263,9 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
     {request !== "GET" &&
       <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
         <Grid marginLeft='auto' item xs>
-          body:
+          <Container disableGutters sx={{m:0, pb:1}}>
+            body:
+          </Container>
           <TerminalTextField size="small" fullWidth margin="none" variant="outlined" multiline onChange={handleChangeBody} value={body}/>
         </Grid>
       </Grid>
@@ -282,10 +293,106 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
       </ThemeProvider>
       <br></br>
       <br></br>
-      <span style={{color:Style.prompt}}>></span> {response}
+      <span style={{color:Style.prompt}}></span> {response}
       </p>
     }
   </>;
 }
 
-export { Dialog, inputDialog, inputOpcua, inputHttpRequest };
+
+function inputS7(connectionParameters, loading, response, responseStatus, handleChange, handleKeyDown, handleClick) {
+  return <>
+
+    <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
+      <Grid marginLeft='auto' item xs>
+        <Container disableGutters sx={{m:0, pb:1}}>
+          ip:
+        </Container>
+        <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={event => handleChange(event, "ip")} 
+          value={connectionParameters.ip} onKeyDown={handleKeyDown}
+        />   
+      </Grid>
+    </Grid>
+
+    <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
+      <Grid marginLeft='auto' item xs>
+        <Container disableGutters sx={{m:0, pb:1}}>
+          port:
+        </Container>
+        <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={event => handleChange(event, "port")} 
+          value={connectionParameters.port} onKeyDown={handleKeyDown}
+        />
+      </Grid>
+    </Grid>
+
+    <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
+      <Grid marginLeft='auto' item xs>
+        <Container disableGutters sx={{m:0, pb:1}}>
+          rack:
+        </Container>
+        <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={event => handleChange(event, "rack")} 
+          value={connectionParameters.rack} onKeyDown={handleKeyDown}
+        />
+      </Grid>
+    </Grid>
+
+    <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
+      <Grid marginLeft='auto' item xs>
+        <Container disableGutters sx={{m:0, pb:1}}>
+          slot:
+        </Container>
+        <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={event => handleChange(event, "slot")} 
+          value={connectionParameters.slot} onKeyDown={handleKeyDown}
+        />
+      </Grid>
+    </Grid>
+
+    <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1} pt={2}>
+      <Grid marginLeft='auto' item width="100px" sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <ThemeProvider theme={theme}>
+          <Button variant="contained" sx={{ width: 100, height: 44}} color="primary" onClick={handleClick} endIcon={loading ? "" : <KeyboardReturnIcon />}>
+            {loading === true && <CircularProgress color="inherit" size={28}/>}
+            {!loading && "Send"}
+          </Button>
+        </ThemeProvider>
+      </Grid>
+    </Grid>
+
+    {responseStatus > 0 &&
+      <p>
+      <br></br>
+      <span style={{color:Style.prompt}}></span> {response}
+      </p>
+    }    
+  </>;
+}
+
+
+function jsonDialog(promptWidth, promptText, hostname, loading, response, responseStatus, handleChange, handleKeyDown, handleClick) {
+  return <>
+    <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
+      <Grid item width={promptWidth}>
+        <span style={{color:Style.prompt}}>$</span> {promptText}
+      </Grid>
+      <Grid marginLeft='auto' item xs>
+        <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
+      </Grid>
+      <Grid item width="100px">
+      <ThemeProvider theme={theme}>
+        <Button variant="contained" sx={{ width: 100, height: 44}} color="primary" onClick={handleClick} endIcon={loading ? "" : <KeyboardReturnIcon />}>
+          {loading === true && <CircularProgress color="inherit" size={28}/>}
+          {!loading && "Send"}
+        </Button>
+      </ThemeProvider>
+      </Grid>
+    </Grid>
+    {responseStatus > 0 &&
+      <p>
+      <br></br>
+      <pre>{JSON.stringify(response, null, 2)}</pre>
+      </p>
+    }
+  </>;
+}
+
+export { Dialog, inputDialog, inputOpcua, inputHttpRequest, inputS7, jsonDialog };

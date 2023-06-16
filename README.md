@@ -16,6 +16,8 @@ Network diagnostic tool for Industrial Edge Devices.
     - [NTP](#ntp)
     - [OPC UA](#opc-ua)
     - [HTTP Request](#http-request)
+    - [S7](#s7)
+    - [Nmap](#nmap)
   - [Documentation](#documentation)
   - [Contribution](#contribution)
   - [License and Legal Information](#license-and-legal-information)
@@ -33,6 +35,8 @@ Current feature set:
 * NTP
 * OPC UA browsing
 * HTTP requests (GET, POST and PUT)
+* S7 connection test
+* Nmap network scan
 
 <img src="docs/graphics/conntest_edge.png" width="50%">
 
@@ -99,6 +103,14 @@ Example `headers`:
 Example `body`:
 
 `{"data":"This is my data"}`
+
+### S7
+
+Type in the IP address you want to connect to. Change port, rack and slot values if necessary.
+
+### Nmap
+
+Run an Nmap network scan on the given IP and subnet range.
 
 ## Documentation
 

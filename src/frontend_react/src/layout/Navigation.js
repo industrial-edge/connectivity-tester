@@ -28,6 +28,16 @@ const links = [
         name: 'HTTP Request',
         to: '/http',
         active: 'http'
+    },
+    {
+        name: 'S7', 
+        to: '/s7',
+        active: 's7'
+    },
+    {
+        name: 'Nmap', 
+        to: '/nmap',
+        active: 'nmap'
     }
 ]
 
