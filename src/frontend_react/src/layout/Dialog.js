@@ -148,9 +148,6 @@ function inputOpcua(hostname, loading, response, responseStatus, handleChange, h
   return <>
     <Grid container direction="row" alignItems="center" justifyContent="flexEnd" spacing={1}>
       <Grid marginLeft='auto' item xs>
-        <Container disableGutters sx={{m:0, pb:1}}>
-          OPC UA endpoint:
-        </Container>
         <TerminalTextField size="small" fullWidth margin="none" variant="outlined" onChange={handleChange} value={hostname} onKeyDown={handleKeyDown}/>
       </Grid>
       <Grid item width="150px">
