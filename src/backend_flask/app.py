@@ -8,6 +8,7 @@ import ntplib
 import dns.resolver
 import socket
 import requests
+import snap7
 
 import threading
 
@@ -452,3 +453,22 @@ def get_http():
         status = 4
 
     return {"response": response, "status": status}
+
+@app.route("/conntest/api/s7")
+def get_s7():
+    s7_ip = request.args.get("ip")
+    port = int(request.args.get("port"))
+    rack = int(request.args.get("rack"))
+    slot = int(request.args.get("slot"))
+    response = "Connection successful"
+
+    client = snap7.client.Client()
+    try:
+        client.connect(s7_ip, rack, slot, port)
+    except RuntimeError as e:
+        s = e.args[0].decode("utf-8")
+        response = f"Connection failed:{s}"
+    finally:
+        connected = client.get_connected()
+
+    return {"response": response, "status": int(connected)}

@@ -100,6 +100,10 @@ Example `body`:
 
 `{"data":"This is my data"}`
 
+### S7
+
+Type in the S7 ip address. Change port, rack and slot vales if necessary. Click "Send".
+
 ## Documentation
 
 You can find further documentation and help in the following links:
