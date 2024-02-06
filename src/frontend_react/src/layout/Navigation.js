@@ -43,7 +43,7 @@ const links = [
 
 export default function Navbar() {
     const location = useLocation()
-    const [active, setActive] = useState(location.pathname === '/' ? 'ping' : location.pathname.slice(1, location.pathname.length));
+    const [active, setActive] = useState(((location.pathname === '/')||(location.pathname.startsWith('/?'))) ? 'ping' : location.pathname.slice(1, location.pathname.length));
 
     return (
         <Box width={'100%'}>

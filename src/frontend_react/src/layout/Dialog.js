@@ -284,7 +284,7 @@ function inputHttpRequest(hostname, loading, response, responseStatus, handleCha
     {responseStatus > 0 &&
       <p>
       <ThemeProvider theme={theme}>
-      <Button variant="contained" sx={{ width: 200, height: 44}} color="primary" onClick={() => {navigator.clipboard.writeText(response);}} endIcon={<ContentCopyIcon />}>
+      <Button variant="contained" sx={{ width: 250, height: 44}} color="primary" onClick={() => {navigator.clipboard.writeText(response);}} endIcon={<ContentCopyIcon />}>
         Copy To Clipboard
       </Button>
       </ThemeProvider>

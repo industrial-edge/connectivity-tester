@@ -35,7 +35,7 @@ export default function Layout() {
             <Grid item>
                <Box fontSize={'0.8rem'} display={'flex'} justifyContent={'center'} alignItems={'center'} py={'1.5rem'} sx={{opacity: 0.8}}>
                   <img src={icon} alt="Connectivity Tester" width={60} height={60}/>
-                  Connectivity Tester v0.3.0
+                  Connectivity Tester v0.5.1
                </Box>
             </Grid>
          </Grid>

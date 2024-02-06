@@ -9,7 +9,7 @@ services:
     build:
       context: ./src/backend_flask
       dockerfile: Dockerfile.example
-    image: conntest_backend:0.3
+    image: conntest_backend:0.5
     restart: unless-stopped
     mem_limit: 300mb
     logging:
@@ -18,13 +18,12 @@ services:
         max-size: "10m"
         max-file: "1"
     networks:
-      - zzz_layer2_net1
       - conntest-net
   conntest_frontend:
     build:
       context: ./src/frontend_react
       dockerfile: Dockerfile.example
-    image: conntest_frontend:0.3
+    image: conntest_frontend:0.5
     restart: unless-stopped
     mem_limit: 100mb
     logging:
@@ -40,6 +39,3 @@ services:
 networks:
   conntest-net:
     name: conntest-net
-  zzz_layer2_net1:
-    external:
-      name: zzz_layer2_net1
