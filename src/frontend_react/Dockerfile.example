@@ -13,7 +13,7 @@ COPY package.json package-lock.json ./
 COPY ./src ./src
 COPY ./public ./public
 
-RUN apt update && apt install python -y
+RUN apt update && apt install python3 -y
 
 RUN npm install
 RUN npm run build
