@@ -18,7 +18,7 @@
 
 - Find the two files (in `src/backend_flask` and `src/frontend_react` respectively) named `Dockerfile.example`. These are example Dockerfiles that can be used to build the Docker images of the backend and the frontend. If you choose to use these, rename them both to `Dockerfile` before proceeding
 - Open a console in the root folder (where the `docker-compose` file is)
-- Use the `docker compose build` (replaces the older `docker-compose build`) command to create the Docker images
+- Use the `docker-compose build` (replaces the older `docker-compose build`) command to create the Docker images
 - These Docker images can now be used to build your app with the Industrial Edge App Publisher
 - `docker images | grep conntest` can be used to check for the images
 
