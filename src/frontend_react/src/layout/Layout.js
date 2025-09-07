@@ -6,6 +6,7 @@ import Dns from "../pages/Dns";
 import Ntp from "../pages/Ntp";
 import Opcua from "../pages/Opcua";
 import Http from "../pages/Http";
+import S7 from "../pages/S7"
 import {Route, Routes} from "react-router-dom";
 import {Box, Grid} from "@mui/material";
 import icon from "../img/conntest_edge.png"
@@ -26,6 +27,7 @@ export default function Layout() {
                <Route exact path={'/ntp'} element={<Ntp/>}/>
                <Route exact path={'/opcua'} element={<Opcua/>}/>
                <Route exact path={'/http'} element={<Http/>}/>
+               <Route exact path={'/s7'} element={<S7/>}/>
                </Routes>
             </Grid>
             <Grid item>
